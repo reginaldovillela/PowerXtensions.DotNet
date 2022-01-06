@@ -1,5 +1,7 @@
 using System;
 using System.Globalization;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace PowerXtensions.DotNet
@@ -9,6 +11,35 @@ namespace PowerXtensions.DotNet
         private readonly static CultureInfo _culture = CultureInfo.InvariantCulture;
 
         private readonly static DateTimeStyles _dtStyle = DateTimeStyles.None;
+
+        public static string Base64Encode(this string value)
+        {
+            var base64EncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
+            return Convert.ToBase64String(base64EncodeBytes);
+        }
+
+        public static string Base64Decode(this string value)
+        {
+            var base64DecodeBytes = Convert.FromBase64String(value ?? "");
+            return Encoding.UTF8.GetString(base64DecodeBytes);
+        }
+
+        public static string HexadecimalEncode(this string value)
+        {
+            var hexadecimalEncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
+
+            return string.Join("", value?.Select(c => ((int)c).ToString("X2")));
+        }
+
+        public static string HexadecimalDecode(this string value)
+        {
+            var bytes = new byte[value.Length / 2];
+
+            for (var i = 0; i < bytes.Length; i++)
+                bytes[i] = Convert.ToByte(value.Substring(i * 2, 2));
+
+            return Encoding.UTF8.GetString(bytes);
+        }
 
         #region Converters
 
@@ -97,15 +128,15 @@ namespace PowerXtensions.DotNet
         #endregion
 
         /// <summary>
-        /// Checks if the texts in the criteria exist in the String
+        /// Checks if any of the entered items exist in the String
         /// </summary>
         /// <param name="value">String for analysis</param>
-        /// <param name="criteria">search criteria</param>
-        /// <returns>If it exists, it will return True</returns>
-        public static bool Contains(this string value, params string[] criteria)
+        /// <param name="items">Items to find</param>
+        /// <returns>If at least one of the items is found, it will return True</returns>
+        public static bool Contains(this string value, params string[] items)
         {
-            for (var i = 0; i < criteria.Length; i++)
-                if (criteria[i] == value)
+            for (var i = 0; i < items.Length; i++)
+                if (items[i] == value)
                     return true;
 
             return false;
@@ -126,16 +157,18 @@ namespace PowerXtensions.DotNet
         /// <returns>If the String is null and/or empty and/or contains white space, it will return True</returns>
         public static bool IsNullOrEmptyOrWhiteSpace(this string value)
         {
-            if (value is null)
-                return true;
+            return string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
 
-            if (value == "")
-                return true;
+            //if (value is null)
+            //    return true;
 
-            if (value.StartsWith(" "))
-                return true;
+            //if (value == "")
+            //    return true;
 
-            return false;
+            //if (value.StartsWith(" "))
+            //    return true;
+
+            //return false;
         }
 
         /// <summary>
@@ -149,10 +182,10 @@ namespace PowerXtensions.DotNet
         /// <summary>
         /// Remove the entered text from the String
         /// </summary>
-        /// <param name="Value">String for analysis</param>
+        /// <param name="value">String for analysis</param>
         /// <param name="partToRemove">Text that will be from the String</param>
         /// <returns>Returns the string without the text entered</returns>
-        public static string Remove(this string Value, string partToRemove)
-            => Value.Replace(partToRemove, null);
+        public static string Remove(this string value, string partToRemove)
+            => value.Replace(partToRemove, null);
     }
 }
