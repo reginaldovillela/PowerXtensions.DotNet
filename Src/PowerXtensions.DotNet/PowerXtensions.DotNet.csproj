@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     
     <PackageId>PowerXtensions.DotNet</PackageId>
-    <Version>1.0.0-alpha-002</Version>
+    <Version>1.0.0-alpha-003</Version>
     <Authors>Reginaldo Villela</Authors>
     <RepositoryUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</PackageProjectUrl>
@@ -18,10 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Assets\icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <None Include="Assets\icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <!--
