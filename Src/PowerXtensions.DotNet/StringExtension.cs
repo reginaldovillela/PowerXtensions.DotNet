@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,7 @@ namespace PowerXtensions.DotNet
         }
 
         public static string HexadecimalEncode(this string value)
-        {
-            var hexadecimalEncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
-
-            return string.Join("", value?.Select(c => ((int)c).ToString("X2")));
-        }
+            => string.Join("", value.Select(c => ((int)c).ToString("X2")));
 
         public static string HexadecimalDecode(this string value)
         {

@@ -13,8 +13,16 @@
     <Description>This package adds and extends some .Net functionality</Description>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>Power Extension String</PackageTags>
+    <PackageTags>powerextension extension extensions plugin plugins date int long string</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <!--
   <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
