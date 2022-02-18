@@ -1,22 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerXtensions.DotNet", "PowerXtensions.DotNet\PowerXtensions.DotNet.csproj", "{2665EC17-2BE7-47A4-8EE4-C011E61F0450}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerXtensions.DotNet", "PowerXtensions.DotNet\PowerXtensions.DotNet.csproj", "{2665EC17-2BE7-47A4-8EE4-C011E61F0450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerXtensions.DotNet.Tests", "PowerXtensions.DotNet.Tests\PowerXtensions.DotNet.Tests.csproj", "{08CC797B-4891-49BC-834D-D093331D3561}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2665EC17-2BE7-47A4-8EE4-C011E61F0450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2665EC17-2BE7-47A4-8EE4-C011E61F0450}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2665EC17-2BE7-47A4-8EE4-C011E61F0450}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2665EC17-2BE7-47A4-8EE4-C011E61F0450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08CC797B-4891-49BC-834D-D093331D3561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08CC797B-4891-49BC-834D-D093331D3561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08CC797B-4891-49BC-834D-D093331D3561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08CC797B-4891-49BC-834D-D093331D3561}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A795D77C-2807-4E49-A4F1-654E2E223C45}
 	EndGlobalSection
 EndGlobal

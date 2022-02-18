@@ -9,25 +9,47 @@ namespace PowerXtensions.DotNet
 {
     public static class StringExtension
     {
-        private readonly static CultureInfo _culture = CultureInfo.InvariantCulture;
+        private readonly static CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
 
-        private readonly static DateTimeStyles _dtStyle = DateTimeStyles.None;
+        private readonly static DateTimeStyles _dateTimeStyle = DateTimeStyles.None;
 
+        /// <summary>
+        /// Convert a String to Base64
+        /// </summary>
+        /// <param name="value">String to convert</param>
+        /// <returns>String converted to Base64</returns>
         public static string Base64Encode(this string value)
         {
             var base64EncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
             return Convert.ToBase64String(base64EncodeBytes);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string Base64Decode(this string value)
         {
             var base64DecodeBytes = Convert.FromBase64String(value ?? "");
             return Encoding.UTF8.GetString(base64DecodeBytes);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string HexadecimalEncode(this string value)
-            => string.Join("", value.Select(c => ((int)c).ToString("X2")));
+        { 
+            return string.Join("", value.Select(c => ((int)c).ToString("X2")));
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string HexadecimalDecode(this string value)
         {
             var bytes = new byte[value.Length / 2];
@@ -47,7 +69,7 @@ namespace PowerXtensions.DotNet
         /// <param name="format">Date and time format as is in String</param>
         /// <returns>A DateTime will be returned or an exception will be thrown</returns>
         public static DateTime ToDateTime(this string value, string format = "yyyy-mm-dd")
-            => DateTime.TryParseExact(value, format, _culture, _dtStyle, out DateTime result)
+            => DateTime.TryParseExact(value, format, _cultureInfo, _dateTimeStyle, out DateTime result)
             ? result
             : throw new InvalidCastException($"Unable to convert {value} value to date and time in {format} format");
 
@@ -58,7 +80,7 @@ namespace PowerXtensions.DotNet
         /// <param name="format">Date and time format as is in String</param>
         /// <returns>A Nullable DateTime will be returned</returns>
         public static DateTime? ToNullableDateTime(this string value, string format = "yyyy-mm-dd")
-            => DateTime.TryParseExact(value, format, _culture, _dtStyle, out DateTime result)
+            => DateTime.TryParseExact(value, format, _cultureInfo, _dateTimeStyle, out DateTime result)
             ? result
             : null;
 
@@ -133,7 +155,7 @@ namespace PowerXtensions.DotNet
         public static bool Contains(this string value, params string[] items)
         {
             for (var i = 0; i < items.Length; i++)
-                if (items[i] == value)
+                if (value.Contains(items[i]))
                     return true;
 
             return false;
@@ -145,7 +167,9 @@ namespace PowerXtensions.DotNet
         /// <param name="value">String for analysis</param>
         /// <returns>If more than one exists, True is returned.</returns>
         public static bool HasMoreThanOneWord(this string value)
-            => value.Split(null).Length > 1;
+        {
+            return value.Split().Length > 1;
+        }
 
         /// <summary>
         /// Checks if the String is null, empty or contains white space
@@ -155,17 +179,6 @@ namespace PowerXtensions.DotNet
         public static bool IsNullOrEmptyOrWhiteSpace(this string value)
         {
             return string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
-
-            //if (value is null)
-            //    return true;
-
-            //if (value == "")
-            //    return true;
-
-            //if (value.StartsWith(" "))
-            //    return true;
-
-            //return false;
         }
 
         /// <summary>
@@ -174,7 +187,9 @@ namespace PowerXtensions.DotNet
         /// <param name="value">String for analysis</param>
         /// <returns>Returns a String with numbers only</returns>
         public static string OnlyNumbers(this string value)
-            => Regex.Replace(value ?? "", @"[^\d]", "");
+        { 
+            return Regex.Replace(value ?? "", @"[^\d]", "");
+        }
 
         /// <summary>
         /// Remove the entered text from the String
@@ -183,6 +198,8 @@ namespace PowerXtensions.DotNet
         /// <param name="partToRemove">Text that will be from the String</param>
         /// <returns>Returns the string without the text entered</returns>
         public static string Remove(this string value, string partToRemove)
-            => value.Replace(partToRemove, null);
+        { 
+            return value.Replace(partToRemove, null);
+        }
     }
 }
