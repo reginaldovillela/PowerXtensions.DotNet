@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace PowerXtensions.DotNet
 {
@@ -14,7 +12,28 @@ namespace PowerXtensions.DotNet
         private readonly static DateTimeStyles _dateTimeStyle = DateTimeStyles.None;
 
         /// <summary>
-        /// Convert a String to Base64
+        /// Checks if all characters are the same
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>True if all are the same</returns>
+        public static bool AllCharactersSame(this string value)
+        {
+            if (value.Length <= 1)
+                return true;
+
+            var charToCompare = value[0];
+
+            for (int i = 0; i < value.Length; i++)
+                if (value[i] != charToCompare)
+                    return false;
+                else
+                    charToCompare = value[i];
+
+            return true;
+        }
+
+        /// <summary>
+        /// Convert a String (Plain Text) to Base64
         /// </summary>
         /// <param name="value">String to convert</param>
         /// <returns>String converted to Base64</returns>
@@ -25,10 +44,10 @@ namespace PowerXtensions.DotNet
         }
 
         /// <summary>
-        /// 
+        /// Convert a Base64 to String (Plain Text)
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">Base64 to convert</param>
+        /// <returns>Base64 converted to String</returns>
         public static string Base64Decode(this string value)
         {
             var base64DecodeBytes = Convert.FromBase64String(value ?? "");
@@ -36,26 +55,26 @@ namespace PowerXtensions.DotNet
         }
 
         /// <summary>
-        /// 
+        /// Convert a String (Plain Text) to Hexadecimal
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">String to convert</param>
+        /// <returns>String converted to Hexadecimal</returns>
         public static string HexadecimalEncode(this string value)
-        { 
-            return string.Join("", value.Select(c => ((int)c).ToString("X2")));
+        {
+            return string.Join("", value.Select(c => ((int)c).ToString("x2")));
         }
 
         /// <summary>
-        /// 
+        /// Convert a Hexadecimal to String (Plain Text)
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">Hexadecimal to convert</param>
+        /// <returns>Hexadecimal converted to String</returns>
         public static string HexadecimalDecode(this string value)
         {
             var bytes = new byte[value.Length / 2];
 
             for (var i = 0; i < bytes.Length; i++)
-                bytes[i] = Convert.ToByte(value.Substring(i * 2, 2));
+                bytes[i] = Convert.ToByte(value.Substring(i * 2, 2), 16);
 
             return Encoding.UTF8.GetString(bytes);
         }
@@ -187,8 +206,15 @@ namespace PowerXtensions.DotNet
         /// <param name="value">String for analysis</param>
         /// <returns>Returns a String with numbers only</returns>
         public static string OnlyNumbers(this string value)
-        { 
-            return Regex.Replace(value ?? "", @"[^\d]", "");
+        {
+            var charsNumbers = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < value.Length; i++)
+                if (charsNumbers.Contains(value[i]))
+                    sb.Append(value[i]);
+
+            return sb.ToString();
         }
 
         /// <summary>
@@ -198,7 +224,7 @@ namespace PowerXtensions.DotNet
         /// <param name="partToRemove">Text that will be from the String</param>
         /// <returns>Returns the string without the text entered</returns>
         public static string Remove(this string value, string partToRemove)
-        { 
+        {
             return value.Replace(partToRemove, null);
         }
     }
