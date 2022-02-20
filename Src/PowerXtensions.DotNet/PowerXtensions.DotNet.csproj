@@ -6,14 +6,14 @@
     <Nullable>enable</Nullable>
     
     <PackageId>PowerXtensions.DotNet</PackageId>
-    <Version>1.0.0-alpha-003</Version>
+    <Version>1.0.0-beta-001</Version>
     <Authors>Reginaldo Villela</Authors>
     <RepositoryUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</PackageProjectUrl>
     <Description>This package adds and extends some .Net functionality</Description>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>powerextension extension extensions plugin plugins date int long string</PackageTags>
+    <PackageTags>powerextension extension extensions plugin plugins date int long short string converters</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
