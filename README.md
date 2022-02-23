@@ -27,13 +27,9 @@
 
 ---
 
-&nbsp;
-
 ### AllCharactersSame
 #### [EN] In this extension, the check is made if all the characters present are the same.
 #### [PT-BR] Nesta extensão, a verificação é feita se todos os caracteres presentes são iguais.
-
-&nbsp;
 
 ```C#
 public void test()
@@ -57,8 +53,6 @@ public void test()
 #### [EN] In this extension it is possible to convert a String (Base64) to a String (plain text).
 #### [PT-BR] Nesta extensão é possível converter uma String (Base64) para uma String (texto simples).
 
-&nbsp;
-
 ```C#
 public void test()
 {
@@ -77,8 +71,6 @@ public void test()
 #### [EM] In this extension it is possible to convert a String (plain text) to a String (Base64).
 #### [PT-BR] Nesta extensão é possível converter uma String (texto simples) para uma String (Base64).
 
-&nbsp;
-
 ```C#
 public void test()
 {
@@ -96,8 +88,6 @@ public void test()
 ### Contains
 #### [EN] In this extension, it checks if any of the informed items exists in the String.
 #### [PT-BR] Nesta extensão, verifica se algum dos itens informados existe na String.
-
-&nbsp;
 
 ```C#
 public void test()
@@ -121,8 +111,6 @@ public void test()
 #### [EN] In this extension, it checks if there is more than one word in the String.
 #### [PT-BR] Nesta extensão, verifica se há mais de uma palavra na String.
 
-&nbsp;
-
 ```C#
 public void test()
 {
@@ -145,8 +133,6 @@ public void test()
 #### [EN] In this extension, converts a Hexadecimal to String (Plain Text).
 #### [PT-BR] Nesta extensão, converte um Hexadecimal para String (Texto Simples).
 
-&nbsp;
-
 ```C#
 public void test()
 {
@@ -163,8 +149,6 @@ public void test()
 #### [EN] In this extension, converts a String (Plain Text) to Hexadecimal.
 #### [PT-BR] Nesta extensão, converte uma String (Texto Simples) para Hexadecimal.
 
-&nbsp;
-
 ```C#
 public void test()
 {
@@ -172,5 +156,75 @@ public void test()
 
     Console.WriteLine(str.HexadecimalEncode())
     // 506f7765725874656e73696f6e7320746f202e4e6574207772697474656e2077697468204323
+}
+```
+
+&nbsp;
+
+### IsNullOrEmptyOrWhiteSpace
+#### [EN] In this extension, it checks if the String is null, empty or contains white space.
+#### [PT-BR] Nesta extensão, verifica se a String é nula, vazia ou contém espaços em branco.
+
+```C#
+public void test()
+{
+    var str = "";
+
+    if (str.IsNullOrEmptyOrWhiteSpace())
+    {
+        // TODO
+    }
+    else
+    {
+        // TODO
+    }
+}
+```
+
+&nbsp;
+
+### OnlyNumbers
+#### [EN] In this extension, removes all non-numeric characters.
+#### [PT-BR] Nesta extensão, remove todos os caracteres não numéricos.
+
+```C#
+public void test()
+{
+    var str = "PowerXtensions to .Net written with C# 1234567890";
+
+    Console.WriteLine(str.OnlyNumbers());
+    // 123456789
+}
+```
+
+&nbsp;
+
+### Remove
+#### [EN] In this extension, removes the informed text from the String.
+#### [PT-BR] Nesta extensão, remove o texto informado da String.
+
+```C#
+public void test()
+{
+    var str = "PowerXtensions to .Net written with C# 1234567890";
+    str = str.Remove(" 1234567890");
+
+    Console.WriteLine(str);
+    // PowerXtensions to .Net written with C#
+}
+```
+
+&nbsp;
+
+### ToDateTime
+#### [EN] In this extension, converts the String to a DateTime. If unable to convert an exception will be thrown.
+#### [PT-BR] Nesta extensão, converte a String em um DateTime. Se não for possível converter uma exceção será lançada.
+
+```C#
+public void test()
+{
+    var str = "31/12/2000 23:59:29";
+    DateTime dt = str.ToDateTime("dd/MM/yyyy HH:mm:ss")
+    // if not pass format, default will be assigned yyyy-MM-dd
 }
 ```
