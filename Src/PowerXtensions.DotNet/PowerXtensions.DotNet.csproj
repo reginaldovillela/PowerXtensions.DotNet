@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;net451;net452;net46;net461;net472;net48;netstandard2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;netstandard2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     
     <PackageId>PowerXtensions.DotNet</PackageId>
-    <Version>1.0.0-beta-001</Version>
+    <Version>1.0.0-beta-002</Version>
     <Authors>Reginaldo Villela</Authors>
     <RepositoryUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</PackageProjectUrl>
-    <Description>This package adds and extends some .Net functionality</Description>
+    <Description>[EN] PowerXtensions.DotNet, as its name suggests, is a collection of extensions to be used in the .Net environment. These are extensions that were frequently rewritten in several projects and that's why I decided to make them public.
+    [PT-BR] PowerXtensions.DotNet, como o próprio nome sugere, é uma coleção de extensões para serem usadas no ambiente .Net. São extensões que frequentemente eram reescritas em diversos projetos e por isso decidi deixa-las publicas.</Description>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>powerextension extension extensions plugin plugins date int long short string converters</PackageTags>
+    <PackageTags>powerextension powerextensions powerxtension powerxtensions power extension extensions date int long short string base64 hexadecimal converters c# .net dotnet</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 

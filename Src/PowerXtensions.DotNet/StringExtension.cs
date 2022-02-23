@@ -33,17 +33,6 @@ namespace PowerXtensions.DotNet
         }
 
         /// <summary>
-        /// Convert a String (Plain Text) to Base64
-        /// </summary>
-        /// <param name="value">String to convert</param>
-        /// <returns>String converted to Base64</returns>
-        public static string Base64Encode(this string value)
-        {
-            var base64EncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
-            return Convert.ToBase64String(base64EncodeBytes);
-        }
-
-        /// <summary>
         /// Convert a Base64 to String (Plain Text)
         /// </summary>
         /// <param name="value">Base64 to convert</param>
@@ -55,13 +44,39 @@ namespace PowerXtensions.DotNet
         }
 
         /// <summary>
-        /// Convert a String (Plain Text) to Hexadecimal
+        /// Convert a String (Plain Text) to Base64
         /// </summary>
         /// <param name="value">String to convert</param>
-        /// <returns>String converted to Hexadecimal</returns>
-        public static string HexadecimalEncode(this string value)
+        /// <returns>String converted to Base64</returns>
+        public static string Base64Encode(this string value)
         {
-            return string.Join("", value.Select(c => ((int)c).ToString("x2")));
+            var base64EncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
+            return Convert.ToBase64String(base64EncodeBytes);
+        }
+
+        /// <summary>
+        /// Checks if any of the entered items exist in the String
+        /// </summary>
+        /// <param name="value">String for analysis</param>
+        /// <param name="items">Items to find</param>
+        /// <returns>If at least one of the items is found, it will return True</returns>
+        public static bool Contains(this string value, params string[] items)
+        {
+            for (var i = 0; i < items.Length; i++)
+                if (value.Contains(items[i]))
+                    return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if there is more than one word in the String
+        /// </summary>
+        /// <param name="value">String for analysis</param>
+        /// <returns>If more than one exists, True is returned.</returns>
+        public static bool HasMoreThanOneWord(this string value)
+        {
+            return value.Split().Length > 1;
         }
 
         /// <summary>
@@ -77,6 +92,54 @@ namespace PowerXtensions.DotNet
                 bytes[i] = Convert.ToByte(value.Substring(i * 2, 2), 16);
 
             return Encoding.UTF8.GetString(bytes);
+        }
+
+        /// <summary>
+        /// Convert a String (Plain Text) to Hexadecimal
+        /// </summary>
+        /// <param name="value">String to convert</param>
+        /// <returns>String converted to Hexadecimal</returns>
+        public static string HexadecimalEncode(this string value)
+        {
+            return string.Join("", value.Select(c => ((int)c).ToString("x2")));
+        }
+
+        /// <summary>
+        /// Checks if the String is null, empty or contains white space
+        /// </summary>
+        /// <param name="value">String for analysis</param>
+        /// <returns>If the String is null and/or empty and/or contains white space, it will return True</returns>
+        public static bool IsNullOrEmptyOrWhiteSpace(this string value)
+        {
+            return string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
+        }
+
+        /// <summary>
+        /// Removes all non-number characters
+        /// </summary>
+        /// <param name="value">String for analysis</param>
+        /// <returns>Returns a String with numbers only</returns>
+        public static string OnlyNumbers(this string value)
+        {
+            var charsNumbers = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < value.Length; i++)
+                if (charsNumbers.Contains(value[i]))
+                    sb.Append(value[i]);
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Remove the entered text from the String
+        /// </summary>
+        /// <param name="value">String for analysis</param>
+        /// <param name="partToRemove">Text that will be from the String</param>
+        /// <returns>Returns the string without the text entered</returns>
+        public static string Remove(this string value, string partToRemove)
+        {
+            return value.Replace(partToRemove, null);
         }
 
         #region Converters
@@ -165,67 +228,5 @@ namespace PowerXtensions.DotNet
 
         #endregion
 
-        /// <summary>
-        /// Checks if any of the entered items exist in the String
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <param name="items">Items to find</param>
-        /// <returns>If at least one of the items is found, it will return True</returns>
-        public static bool Contains(this string value, params string[] items)
-        {
-            for (var i = 0; i < items.Length; i++)
-                if (value.Contains(items[i]))
-                    return true;
-
-            return false;
-        }
-
-        /// <summary>
-        /// Checks if there is more than one word in the String
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <returns>If more than one exists, True is returned.</returns>
-        public static bool HasMoreThanOneWord(this string value)
-        {
-            return value.Split().Length > 1;
-        }
-
-        /// <summary>
-        /// Checks if the String is null, empty or contains white space
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <returns>If the String is null and/or empty and/or contains white space, it will return True</returns>
-        public static bool IsNullOrEmptyOrWhiteSpace(this string value)
-        {
-            return string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
-        }
-
-        /// <summary>
-        /// Removes all non-number characters
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <returns>Returns a String with numbers only</returns>
-        public static string OnlyNumbers(this string value)
-        {
-            var charsNumbers = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            var sb = new StringBuilder();
-
-            for (int i = 0; i < value.Length; i++)
-                if (charsNumbers.Contains(value[i]))
-                    sb.Append(value[i]);
-
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Remove the entered text from the String
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <param name="partToRemove">Text that will be from the String</param>
-        /// <returns>Returns the string without the text entered</returns>
-        public static string Remove(this string value, string partToRemove)
-        {
-            return value.Replace(partToRemove, null);
-        }
     }
 }
