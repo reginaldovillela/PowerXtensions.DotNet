@@ -224,7 +224,112 @@ public void test()
 public void test()
 {
     var str = "31/12/2000 23:59:29";
-    DateTime dt = str.ToDateTime("dd/MM/yyyy HH:mm:ss")
+    DateTime dt = str.ToDateTime("dd/MM/yyyy HH:mm:ss");
     // if not pass format, default will be assigned yyyy-MM-dd
+}
+```
+
+&nbsp;
+
+### ToInt
+#### [EN] In this extension, converts the String to a Integer. If unable to convert an exception will be thrown.
+#### [PT-BR] Nesta extensão, converte a String em um Inteiro. Se não for possível converter uma exceção será lançada.
+
+```C#
+public void test()
+{
+    var str = "123456";
+    int dt = str.ToInt();
+    // 123456
+}
+```
+
+&nbsp;
+
+### ToLong
+#### [EN] In this extension, converts the String to a Long. If unable to convert an exception will be thrown.
+#### [PT-BR] Nesta extensão, converte a String em um Longo. Se não for possível converter uma exceção será lançada.
+
+```C#
+public void test()
+{
+    var str = "1234567890";
+    long dt = str.ToLong();
+    // 1234567890
+}
+```
+
+&nbsp;
+
+### ToShort
+#### [EN] In this extension, converts the String to a Short. If unable to convert an exception will be thrown.
+#### [PT-BR] Nesta extensão, converte a String em um Curto. Se não for possível converter uma exceção será lançada.
+
+```C#
+public void test()
+{
+    var str = "123";
+    short dt = str.ToShort();
+    // 123
+}
+```
+
+&nbsp;
+
+### ToNullableDateTime
+#### [EN] In this extension, converts the String to a Nullable DateTime. If unable to convert, a null Nullable DateTime is returned.
+#### [PT-BR] Nesta extensão, converte a String em um "Nullable DateTime". Se não puder converter, um "Nullable DateTime" nulo é retornado.
+
+```C#
+public void test()
+{
+    var str = "31/12/2000 23:59:29";
+    DateTime dt? = str.ToNullableDateTime("dd/MM/yyyy HH:mm:ss");
+    // if not pass format, default will be assigned yyyy-MM-dd
+}
+```
+
+&nbsp;
+
+### ToNullableInt
+#### [EN] In this extension, converts the String to a Nullable Integer. If unable to convert, a null Nullable Integer is returned.
+#### [PT-BR] Nesta extensão, converte a String em um "Nullable Inteiro". Se não puder converter, um "Nullable Inteiro" nulo é retornado.
+
+```C#
+public void test()
+{
+    var str = "123456";
+    int? dt = str.ToNullableInt();
+    // 123456
+}
+```
+
+&nbsp;
+
+### ToNullableLong
+#### [EN] In this extension, converts the String to a Nullable Long. If unable to convert, a null Nullable Long is returned.
+#### [PT-BR] Nesta extensão, converte a String em um "Nullable Longo". Se não puder converter, um "Nullable Longo" nulo é retornado.
+
+```C#
+public void test()
+{
+    var str = "1234567890";
+    long? dt = str.ToNullableLong();
+    // 1234567890
+}
+```
+
+&nbsp;
+
+### ToNullableShort
+#### [EN] In this extension, converts the String to a Nullable Short. If unable to convert, a null Nullable Short is returned.
+#### [PT-BR] Nesta extensão, converte a String em um "Nullable Short". Se não puder converter, um "Nullable Short" nulo é retornado.
+
+```C#
+public void test()
+{
+    var str = "123";
+    short? dt = str.ToNullableShort();
+    // 123
 }
 ```
