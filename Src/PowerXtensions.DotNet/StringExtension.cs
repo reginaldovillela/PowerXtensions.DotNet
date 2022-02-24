@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PowerXtensions.DotNet
 {
+    /// <summary>
+    /// Class with string extensions
+    /// </summary>
     public static class StringExtension
     {
         private readonly static CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
