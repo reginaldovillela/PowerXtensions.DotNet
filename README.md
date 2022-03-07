@@ -1,4 +1,5 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=reginaldovillela_PowerXtensions.DotNet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=reginaldovillela_PowerXtensions.DotNet)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=reginaldovillela_PowerXtensions.DotNet&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=reginaldovillela_PowerXtensions.DotNet)
 
 # PowerXtensions.DotNet
 #### [EN] PowerXtensions.DotNet, as its name suggests, is a collection of extensions to be used in the .Net environment. These are extensions that were frequently rewritten in several projects and that's why I decided to make them public.
