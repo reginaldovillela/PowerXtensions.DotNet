@@ -7,7 +7,7 @@
 **[PT-BR]** PowerXtensions.DotNet, como o próprio nome sugere, é uma coleção de extensões para serem usadas no ambiente .Net. São extensões que frequentemente eram reescritas em diversos projetos e por isso decidi deixa-las publicas.  
 
 **[EN]** See the full documentation [here](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
-:brazil: Veja a documentação completa [aqui](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
+**:brazil:** Veja a documentação completa [aqui](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
 
 :brazil:
 
