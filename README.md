@@ -6,27 +6,33 @@
 #### [EN] PowerXtensions.DotNet, as its name suggests, is a collection of extensions to be used in the .Net environment. These are extensions that were frequently rewritten in several projects and that's why I decided to make them public.
 #### [PT-BR] PowerXtensions.DotNet, como o próprio nome sugere, é uma coleção de extensões para serem usadas no ambiente .Net. São extensões que frequentemente eram reescritas em diversos projetos e por isso decidi deixa-las publicas.
 
-## [Documentation / Wiki](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki)
+### [EN] See the full documentation [here](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).
+### [PT-BR] Veja a documentação completa [aqui](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).
 
-## DateTime Extensions
+## [DateTime Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/DateTime-Extensions)
+- IsWeekend
+- FirstDayOfMonth
+- LastDayOfMonth
+- FirstTimeOfDay
+- LastTimeOfDay
+- NextBusinessDay
 
-## String Extensions
-
-- [AllCharactersSame](#AllCharactersSame)
-- [Base64Decode](#Base64Decode)
-- [Base64Encode](#Base64Encode)
-- [Contains](#Contains)
-- [HasMoreThanOneWord](#HasMoreThanOneWord)
-- [HexadecimalDecode](#HexadecimalDecode)
-- [HexadecimalEncode](#HexadecimalEncode)
-- [IsNullOrEmptyOrWhiteSpace](#IsNullOrEmptyOrWhiteSpace)
-- [OnlyNumbers](#OnlyNumbers)
-- [Remove](#Remove)
-- [ToDateTime](#ToDateTime)
-- [ToInt](#ToInt)
-- [ToLong](#ToLong)
-- [ToShort](#ToShort)
-- [ToNullableDateTime](#ToNullableDateTime)
-- [ToNullableInt](#ToNullableInt)
-- [ToNullableLong](#ToNullableLong)
-- [ToNullableShort](#ToNullableShort)
+## [String Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/String-Extensions)
+- AllCharactersSame
+- Base64Decode
+- Base64Encode
+- Contains
+- HasMoreThanOneWord
+- HexadecimalDecode
+- HexadecimalEncode
+- IsNullOrEmptyOrWhiteSpace
+- OnlyNumbers
+- Remove
+- ToDateTime
+- ToInt
+- ToLong
+- ToShort
+- ToNullableDateTime
+- ToNullableInt
+- ToNullableLong
+- ToNullableShort
