@@ -9,6 +9,8 @@
 **[EN]** See the full documentation [here](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
 **[PT-BR]** Veja a documentação completa [aqui](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
 
+:brazil:
+
 ## [DateTime Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/DateTime-Extensions)
 - IsWeekend
 - FirstDayOfMonth
