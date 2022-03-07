@@ -1,13 +1,12 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=reginaldovillela_PowerXtensions.DotNet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=reginaldovillela_PowerXtensions.DotNet)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=reginaldovillela_PowerXtensions.DotNet&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=reginaldovillela_PowerXtensions.DotNet)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=reginaldovillela_PowerXtensions.DotNet&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=reginaldovillela_PowerXtensions.DotNet)
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=reginaldovillela_PowerXtensions.DotNet)
 
 # PowerXtensions.DotNet
 #### [EN] PowerXtensions.DotNet, as its name suggests, is a collection of extensions to be used in the .Net environment. These are extensions that were frequently rewritten in several projects and that's why I decided to make them public.
 #### [PT-BR] PowerXtensions.DotNet, como o próprio nome sugere, é uma coleção de extensões para serem usadas no ambiente .Net. São extensões que frequentemente eram reescritas em diversos projetos e por isso decidi deixa-las publicas.
 
-[Doc](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki)
+## [Documentation / Wiki](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki)
 
 ## DateTime Extensions
 
@@ -31,5 +30,3 @@
 - [ToNullableInt](#ToNullableInt)
 - [ToNullableLong](#ToNullableLong)
 - [ToNullableShort](#ToNullableShort)
-
-&nbsp;
