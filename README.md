@@ -9,7 +9,7 @@
 **[EN]** See the full documentation [here](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
 **[PT-BR]** Veja a documentação completa [aqui](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
 
-[:brazil:](https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/joypixels/291/flag-brazil_1f1e7-1f1f7.png)
+[https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/joypixels/291/flag-brazil_1f1e7-1f1f7.png](:brazil:)
 
 ## [DateTime Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/DateTime-Extensions)
 - IsWeekend
