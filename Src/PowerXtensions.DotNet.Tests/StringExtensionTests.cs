@@ -61,7 +61,7 @@ namespace PowerXtensions.DotNet.Tests
         [MemberData(nameof(DataToNullableDateTimeTest))]
         public void ToNullDateTimeTest(string dateTimeText, string format, DateTime? expectValue)
         {
-            Assert.IsType(expectValue.GetType(), dateTimeText.ToNullableDateTime(format));
+            Assert.IsType(expectValue?.GetType(), dateTimeText.ToNullableDateTime(format));
             Assert.Equal(expectValue, dateTimeText.ToNullableDateTime(format));
         }
 
@@ -129,9 +129,9 @@ namespace PowerXtensions.DotNet.Tests
         [Fact(DisplayName = "Test: Is Null, Empty Or White Space")]
         public void IsNullOrEmptyOrWhiteSpaceTest()
         {
-            var test = (string)null;
+            var test = (string?)null;
 
-            Assert.True(test.IsNullOrEmptyOrWhiteSpace());
+            Assert.True(test?.IsNullOrEmptyOrWhiteSpace());
             Assert.True("".IsNullOrEmptyOrWhiteSpace());
             Assert.True(" ".IsNullOrEmptyOrWhiteSpace());
             Assert.False("123 ".IsNullOrEmptyOrWhiteSpace());

@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     
     <PackageId>PowerXtensions.DotNet</PackageId>
-    <Version>1.0.0</Version>
+    <Version>2.0.0-beta-001</Version>
     <Authors>Reginaldo Villela</Authors>
     <RepositoryUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</PackageProjectUrl>
