@@ -3,11 +3,11 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=reginaldovillela_PowerXtensions.DotNet&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=reginaldovillela_PowerXtensions.DotNet)
 
 # PowerXtensions.DotNet
-#### [EN] PowerXtensions.DotNet, as its name suggests, is a collection of extensions to be used in the .Net environment. These are extensions that were frequently rewritten in several projects and that's why I decided to make them public.
-#### [PT-BR] PowerXtensions.DotNet, como o próprio nome sugere, é uma coleção de extensões para serem usadas no ambiente .Net. São extensões que frequentemente eram reescritas em diversos projetos e por isso decidi deixa-las publicas.
+[EN] PowerXtensions.DotNet, as its name suggests, is a collection of extensions to be used in the .Net environment. These are extensions that were frequently rewritten in several projects and that's why I decided to make them public.  
+[PT-BR] PowerXtensions.DotNet, como o próprio nome sugere, é uma coleção de extensões para serem usadas no ambiente .Net. São extensões que frequentemente eram reescritas em diversos projetos e por isso decidi deixa-las publicas.  
 
-### [EN] See the full documentation [here](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).
-### [PT-BR] Veja a documentação completa [aqui](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).
+[EN] See the full documentation [here](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
+[PT-BR] Veja a documentação completa [aqui](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki).  
 
 ## [DateTime Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/DateTime-Extensions)
 - IsWeekend
