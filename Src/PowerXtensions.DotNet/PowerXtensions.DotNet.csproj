@@ -10,6 +10,7 @@
     <!-- nuget package config -->
     <Authors>Reginaldo Villela</Authors>
     <Company>PowerXtensions</Company>
+    <Copyright>Copyright © Reginaldo Villela 2022</Copyright>
     <Description>[EN] PowerXtensions.DotNet, as its name suggests, is a collection of extensions to be used in the .Net environment. These are extensions that were frequently rewritten in several projects and that's why I decided to make them public.
 [PT-BR] PowerXtensions.DotNet, como o próprio nome sugere, é uma coleção de extensões para serem usadas no ambiente .Net. São extensões que frequentemente eram reescritas em diversos projetos e por isso decidi deixa-las publicas.</Description>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -21,6 +22,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>[EN] Include more extensions: DateTime Extensions.
 [PT-BR] Incluído mais extensões: DateTime Extensions.</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Product>PowerXtensions.DotNet</Product>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageTags>powerextension powerextensions powerxtension powerxtensions power extension extensions date int long short string base64 hexadecimal converters c# .net dotnet</PackageTags>
     <RepositoryType>git</RepositoryType>
