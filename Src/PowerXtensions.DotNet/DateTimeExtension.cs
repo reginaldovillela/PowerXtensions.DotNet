@@ -8,6 +8,25 @@ namespace PowerXtensions.DotNet
     public static class DateTimeExtension
     {
         /// <summary>
+        /// Calculates the difference in days between dates
+        /// </summary>
+        /// <param name="value">Reference DateTime</param>
+        /// <param name="dateTimeToCompare">DateTime To Compare</param>
+        /// <param name="ignoreWeekend">If true, ignore weekends in count. Default: false</param>
+        /// <returns>Returns the difference in days</returns>
+        public static int DifferenceInDaysBetweenDates(this DateTime value, DateTime dateTimeToCompare, bool ignoreWeekend = false)
+        {
+            var days = dateTimeToCompare.Subtract(value).Days;
+
+            if (ignoreWeekend)
+                for (var i = 0; i < days; i++)
+                    if (IsDayWeekend(value.AddDays(i)))
+                        days--;
+
+            return days > 0 ? days : 0;
+        }
+
+        /// <summary>
         /// Checks if the date entered is a weekend day
         /// </summary>
         /// <param name="value">Reference DateTime</param>
@@ -28,6 +47,16 @@ namespace PowerXtensions.DotNet
         }
 
         /// <summary>
+        /// Returns a DateTime of the first time of the day
+        /// </summary>
+        /// <param name="value">Reference DateTime</param>
+        /// <returns>Returns a DateTime</returns>
+        public static DateTime FirstTimeOfDay(this DateTime value)
+        {
+            return value.Date;
+        }
+
+        /// <summary>
         /// Returns a DateTime of the last day of the month
         /// </summary>
         /// <param name="value">Reference DateTime</param>
@@ -40,16 +69,6 @@ namespace PowerXtensions.DotNet
                 date = date.AddDays(1);
 
             return date.AddDays(-1);
-        }
-
-        /// <summary>
-        /// Returns a DateTime of the first time of the day
-        /// </summary>
-        /// <param name="value">Reference DateTime</param>
-        /// <returns>Returns a DateTime</returns>
-        public static DateTime FirstTimeOfDay(this DateTime value)
-        {
-            return value.Date;
         }
 
         /// <summary>
@@ -79,27 +98,21 @@ namespace PowerXtensions.DotNet
             return value;
         }
 
-        // /// <summary>
-        // /// Returns a DateTime the first working day of the current week
-        // /// </summary>
-        // /// <param name="value">Reference DateTime</param>
-        // /// <param name="daysOff">Holiday list</param>
-        // /// <returns>Returns a DateTime</returns>
-        // public static DateTime FirstBusinessDayOfCurrentWeek(this DateTime value, params DateTime[] daysOff)
-        // {
-        //     if (IsDayOff(value, daysOff))
-        //         FirstBusinessDayOfCurrentWeek(value.AddDays(1), daysOff);
+        /// <summary>
+        /// Calculate Age
+        /// </summary>
+        /// <param name="value">Birth Date</param>
+        /// <returns>Return age in years</returns>
+        public static int YearsOld(this DateTime value)
+        {
+            var now = DateTime.Now;
+            var years = now.Year - value.Year;
 
-        //     if (value.DayOfWeek == DayOfWeek.Sunday)
-        //         FirstBusinessDayOfCurrentWeek(value.AddDays(1), daysOff);
+            if (now.DayOfYear < value.DayOfYear)
+                years--;
 
-
-        //     if (IsDayWeekend(value) || IsDayOff(value, daysOff))
-        //         if (value.DayOfWeek == DayOfWeek.Saturday)
-        //             FirstBusinessDayOfCurrentWeek(value.AddDays(-1), daysOff);
-
-        //     return value;
-        // }
+            return years;
+        }
 
         #region Private
 

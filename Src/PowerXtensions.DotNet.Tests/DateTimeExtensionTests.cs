@@ -1,20 +1,21 @@
 using System;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace PowerXtensions.DotNet.Tests
 {
     public class DateTimeExtensionTests
     {
-        private readonly ITestOutputHelper _output;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="output"></param>
-        public DateTimeExtensionTests(ITestOutputHelper output)
+        [Fact(DisplayName = "Test: Difference In Days Between Dates")]
+        public void DifferenceInDaysBetweenDatesTests()
         {
-            _output = output;
+            var initialDate = new DateTime(2022, 1, 1);
+            var endDate = new DateTime(2022, 1, 20);
+
+            Assert.Equal(19, initialDate.DifferenceInDaysBetweenDates(endDate));
+            Assert.NotEqual(20, initialDate.DifferenceInDaysBetweenDates(endDate));
+
+            Assert.Equal(14, initialDate.DifferenceInDaysBetweenDates(endDate, true));
+            Assert.NotEqual(19, initialDate.DifferenceInDaysBetweenDates(endDate, true));
         }
 
         [Fact(DisplayName = "Test: Date Is Weekend")]
@@ -38,19 +39,6 @@ namespace PowerXtensions.DotNet.Tests
             Assert.NotEqual(notExpectDate, date.FirstDayOfMonth());
         }
 
-        [Fact(DisplayName = "Test: Last Day Of Month")]
-        public void LastDayOfMonthTests()
-        {
-            var date = new DateTime(2022, 1, 29, 0, 0, 0);
-            var expectDate = new DateTime(2022, 1, 31, 0, 0, 0);
-            var notExpectDate = new DateTime(2022, 1, 31, 0, 0, 1);
-
-            //_output.WriteLine(date.LastDayOfMonth().ToString());
-
-            Assert.Equal(expectDate, date.LastDayOfMonth());
-            Assert.NotEqual(notExpectDate, date.LastDayOfMonth());
-        }
-
         [Fact(DisplayName = "Test: First Time Of Day")]
         public void FirstTimeOfDayTests()
         {
@@ -58,10 +46,19 @@ namespace PowerXtensions.DotNet.Tests
             var expectDate = new DateTime(2022, 1, 29, 0, 0, 0);
             var notExpectDate = new DateTime(2022, 1, 29, 23, 59, 59);
 
-            //_output.WriteLine(date.LastDayOfMonth().ToString());
-
             Assert.Equal(expectDate, date.FirstTimeOfDay());
             Assert.NotEqual(notExpectDate, date.FirstTimeOfDay());
+        }
+
+        [Fact(DisplayName = "Test: Last Day Of Month")]
+        public void LastDayOfMonthTests()
+        {
+            var date = new DateTime(2022, 1, 29, 0, 0, 0);
+            var expectDate = new DateTime(2022, 1, 31, 0, 0, 0);
+            var notExpectDate = new DateTime(2022, 1, 31, 0, 0, 1);
+
+            Assert.Equal(expectDate, date.LastDayOfMonth());
+            Assert.NotEqual(notExpectDate, date.LastDayOfMonth());
         }
 
         [Fact(DisplayName = "Test: Last Time Of Day")]
@@ -70,8 +67,6 @@ namespace PowerXtensions.DotNet.Tests
             var date = new DateTime(2022, 1, 29, 15, 15, 15);
             var expectDate = new DateTime(2022, 1, 29, 23, 59, 59);
             var notExpectDate = new DateTime(2022, 1, 29, 0, 0, 0);
-
-            //_output.WriteLine(date.LastDayOfMonth().ToString());
 
             Assert.Equal(expectDate, date.LastTimeOfDay());
             Assert.NotEqual(notExpectDate, date.LastTimeOfDay());
@@ -84,8 +79,6 @@ namespace PowerXtensions.DotNet.Tests
             var expectDate = new DateTime(2022, 1, 31, 15, 15, 15);
             var notExpectDate = new DateTime(2022, 1, 30, 15, 15, 15);
 
-            //_output.WriteLine(date.LastDayOfMonth().ToString());
-
             Assert.Equal(expectDate, date.NextBusinessDay());
             Assert.NotEqual(notExpectDate, date.NextBusinessDay());
 
@@ -93,28 +86,22 @@ namespace PowerXtensions.DotNet.Tests
             var expectDate2 = new DateTime(2022, 2, 1, 15, 15, 15);
             var notExpectDate2 = new DateTime(2022, 1, 31, 15, 15, 15);
 
+            var daysOff = new DateTime[]
+            {
+                new DateTime(2022, 1, 31)
+            };
+
             Assert.Equal(expectDate2, date2.NextBusinessDay(new DateTime(2022, 1, 31)));
             Assert.NotEqual(notExpectDate2, date2.NextBusinessDay(new DateTime(2022, 1, 31)));
         }
 
-        // [Fact(DisplayName = "Test: First Business Day Of Current Week")]
-        // public void FirstBusinessDayOfCurrentWeekTests()
-        // {
-        //     var date = new DateTime(2022, 1, 29, 15, 15, 15);
-        //     var expectDate = new DateTime(2022, 1, 24, 15, 15, 15);
-        //     var notExpectDate = new DateTime(2022, 1, 31, 15, 15, 15);
+        [Fact(DisplayName = "Test: Years Old")]
+        public void YearsOldTests()
+        {
+            var dateBirth = new DateTime(1955, 10, 28);
 
-        //     //_output.WriteLine(date.LastDayOfMonth().ToString());
-
-        //     Assert.Equal(expectDate, date.FirstBusinessDayOfCurrentWeek());
-        //     Assert.NotEqual(notExpectDate, date.FirstBusinessDayOfCurrentWeek());
-
-        //     var date2 = new DateTime(2022, 1, 29, 15, 15, 15);
-        //     var expectDate2 = new DateTime(2022, 1, 25, 15, 15, 15);
-        //     var notExpectDate2 = new DateTime(2022, 1, 24, 15, 15, 15);
-
-        //     Assert.Equal(expectDate2, date2.NextBusinessDay(new DateTime(2022, 1, 24)));
-        //     Assert.NotEqual(notExpectDate2, date2.NextBusinessDay(new DateTime(2022, 1, 24)));
-        // }
+            Assert.Equal(66, dateBirth.YearsOld());
+            Assert.NotEqual(65, dateBirth.YearsOld());
+        }
     }
 }

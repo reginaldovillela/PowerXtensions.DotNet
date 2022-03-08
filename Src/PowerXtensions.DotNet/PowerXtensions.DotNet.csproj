@@ -6,7 +6,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <TargetFrameworks>net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;netstandard2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
-  
+
     <!-- nuget package config -->
     <Authors>Reginaldo Villela</Authors>
     <Company>PowerXtensions</Company>
@@ -18,6 +18,7 @@
     <PackageId>PowerXtensions.DotNet</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>[EN] Include more extensions: DateTime Extensions.
 [PT-BR] Incluído mais extensões: DateTime Extensions.</PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -25,11 +26,17 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</RepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>2.0.0-beta-001</Version>
+    <Title>PowerXtensions.DotNet</Title>
+    <Version>2.0.0-beta-003</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="Assets\icon.png" Pack="true" PackagePath="" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>

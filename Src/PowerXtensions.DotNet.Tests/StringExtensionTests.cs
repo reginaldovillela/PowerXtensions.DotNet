@@ -131,7 +131,7 @@ namespace PowerXtensions.DotNet.Tests
         {
             var test = (string?)null;
 
-            Assert.True(test?.IsNullOrEmptyOrWhiteSpace());
+            Assert.True(test.IsNullOrEmptyOrWhiteSpace());
             Assert.True("".IsNullOrEmptyOrWhiteSpace());
             Assert.True(" ".IsNullOrEmptyOrWhiteSpace());
             Assert.False("123 ".IsNullOrEmptyOrWhiteSpace());
