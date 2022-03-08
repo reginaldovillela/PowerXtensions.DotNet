@@ -25,12 +25,14 @@
 ```
 
 ## [DateTime Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/DateTime-Extensions)
+- DifferenceInDaysBetweenDates
 - IsWeekend
 - FirstDayOfMonth
 - FirstTimeOfDay
 - LastDayOfMonth
 - LastTimeOfDay
 - NextBusinessDay
+- YearsOld
 
 ## [String Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/String-Extensions)
 - AllCharactersSame
