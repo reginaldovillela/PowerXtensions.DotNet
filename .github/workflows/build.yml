@@ -49,5 +49,5 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"reginaldovillela_PowerXtensions.DotNet" /o:"reginaldovillela" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build Src\PowerXtensions.DotNet.sln --configuration Release;
-          dotnet test .\Src\PowerXtensions.DotNet.sln --no-build --collect:"Code Coverage";
+          dotnet test Src\PowerXtensions.DotNet.sln --no-build --collect "DotnetCodeCoverage" CodeCoverage.exe analyze /output: "%CD%\DotnetCoverage.coveragexml" "%CD%\DotnetCoverage.coverage";
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
