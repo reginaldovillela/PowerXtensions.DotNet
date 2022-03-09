@@ -47,10 +47,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: pwsh
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"reginaldovillela_PowerXtensions.DotNet" /o:"reginaldovillela" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths="**\*.coverage"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"reginaldovillela_PowerXtensions.DotNet" /o:"reginaldovillela" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.cobertura.xml"
           
           dotnet build Src\PowerXtensions.DotNet.sln --no-incremental
           
-          dotnet test Src\PowerXtensions.DotNet.sln --collect:"Code Coverage"
+          dotnet test Src\PowerXtensions.DotNet.sln --collect:"XPlat Code Coverage"
           
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
