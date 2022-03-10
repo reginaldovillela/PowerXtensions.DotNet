@@ -49,9 +49,9 @@ jobs:
       - name: Generate Coverage
         shell: pwsh
         run: |
-          cd Src;
-          dotnet build .\PowerXtensions.DotNet.sln --no-incremental;
-          coverlet .\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test" --format "opencover" --output "coverage.xml";
+          cd Src
+          dotnet build;
+          coverlet .\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test --no-build" --format "opencover" --output "coverage.xml";
           
       - name: Build and analyze
         env:
