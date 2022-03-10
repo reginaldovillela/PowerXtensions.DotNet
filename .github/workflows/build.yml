@@ -46,6 +46,13 @@ jobs:
         run: |
           dotnet tool install coverlet.console -g
           
+      - name: Generate Coverage
+        shell: pwsh
+        run: |
+          cd Src;
+          dotnet build .\PowerXtensions.DotNet.sln --no-incremental;
+          coverlet .\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test --no-build" --format "opencover" --output "coverage.xml";
+          
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -53,11 +60,5 @@ jobs:
         shell: pwsh
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"reginaldovillela_PowerXtensions.DotNet" /o:"reginaldovillela" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="Src\coverage.xml"
-          
-          cd Src;
-          
-          dotnet build PowerXtensions.DotNet.sln --no-incremental;
-          
-          coverlet PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test --no-build" --format "opencover" --output "coverage.xml";
-          
+          dotnet build .\Src\PowerXtensions.DotNet.sln --no-incremental;
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
