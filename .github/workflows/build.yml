@@ -41,31 +41,16 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
           
-      - name: Install Coverlet Console
-        shell: pwsh
-        run: |
-          dotnet tool update coverlet.console --tool-path .\.coverlet
-          
-      - name: Build .Net
-        shell: pwsh
-        run: |
-          dotnet build .\Src
-          
-      - name: Tests .Net
-        shell: pwsh
-        run: |
-          dotnet test .\Src --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=OpenCover
-          
-      - name: Coverlet .Net
-        shell: pwsh
-        run: |
-         .\.coverlet\coverlet .\Src\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test .\Src --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=OpenCover" --format "opencover" --output "Src\coverage.xml"
-          
       - name: Sonar Analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: pwsh
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"reginaldovillela_PowerXtensions.DotNet" /o:"reginaldovillela" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="Src\coverage.xml"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"reginaldovillela_PowerXtensions.DotNet" /o:"reginaldovillela" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="coverage.xml"
+          
+          dotnet build .\Src
+          
+          dotnet test --no-build .\Src /p:CollectCoverage="true" /p:CoverletOutputFormat="opencover" /p:CoverletOutput="../../coverage.xml"
+          
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
