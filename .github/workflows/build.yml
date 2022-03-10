@@ -56,6 +56,6 @@ jobs:
           
           dotnet build .\Src\PowerXtensions.DotNet.sln --no-incremental;
           
-          .\.coverlet\coverlet .\Src\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test .\Src --no-build" --format "opencover" --output "Src\coverage.xml";
+          .\.coverlet\coverlet .\Src\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test .\Src --no-build /p:CollectCoverage=true" --format "opencover" --output "Src\coverage.xml";
           
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
