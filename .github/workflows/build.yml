@@ -41,16 +41,10 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
           
-      - name: Install Converlet
+      - name: Install Coverlet Console
         shell: pwsh
         run: |
-          dotnet tool install coverlet.console -g
-          
-      - name: Generate Coverage
-        shell: pwsh
-        run: |
-          dotnet build .\Src
-          coverlet .\Src\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test .\Src --no-build" --format "opencover" --output "Src\coverage.xml";
+          dotnet tool update coverlet.console --tool-path .\.coverlet
           
       - name: Build and analyze
         env:
@@ -59,5 +53,9 @@ jobs:
         shell: pwsh
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"reginaldovillela_PowerXtensions.DotNet" /o:"reginaldovillela" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="Src\coverage.xml"
+          
           dotnet build .\Src\PowerXtensions.DotNet.sln --no-incremental;
+          
+          .\.coverlet\coverlet .\Src\PowerXtensions.DotNet.Tests\bin\Debug\net6.0\PowerXtensions.DotNet.Tests.dll --target "dotnet" --targetargs "test .\Src --no-build" --format "opencover" --output "Src\coverage.xml";
+          
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
