@@ -6,7 +6,7 @@ using System.Text;
 namespace PowerXtensions.DotNet
 {
     /// <summary>
-    /// Class with string extensions
+    /// Class with String Extensions
     /// </summary>
     public static class StringExtension
     {
