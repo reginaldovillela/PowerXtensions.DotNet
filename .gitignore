@@ -351,3 +351,6 @@ MigrationBackup/
 
 # Coverlet
 .[Cc]overlet/
+
+# Rider
+.[Ii]dea/

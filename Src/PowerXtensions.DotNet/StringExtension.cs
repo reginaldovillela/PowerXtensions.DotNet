@@ -3,233 +3,270 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace PowerXtensions.DotNet
+namespace PowerXtensions.DotNet;
+
+/// <summary>
+/// Class with String Extensions
+/// </summary>
+public static class StringExtension
 {
+    private static readonly CultureInfo CultureInfo = CultureInfo.InvariantCulture;
+
+    private const DateTimeStyles DateTimeStyle = DateTimeStyles.None;
+
     /// <summary>
-    /// Class with String Extensions
+    /// Checks if all characters are the same
     /// </summary>
-    public static class StringExtension
+    /// <param name="value"></param>
+    /// <returns>True if all are the same</returns>
+    public static bool AllCharactersSame(this string value)
     {
-        private readonly static CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
+        if (value.Length <= 1)
+            return true;
 
-        private readonly static DateTimeStyles _dateTimeStyle = DateTimeStyles.None;
+        var charToCompare = value[0];
 
-        /// <summary>
-        /// Checks if all characters are the same
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns>True if all are the same</returns>
-        public static bool AllCharactersSame(this string value)
-        {
-            if (value.Length <= 1)
+        for (var i = 0; i < value.Length; i++)
+            if (value[i] != charToCompare)
+                return false;
+            else
+                charToCompare = value[i];
+
+        return true;
+    }
+
+    /// <summary>
+    /// Convert a Base64 to String (Plain Text)
+    /// </summary>
+    /// <param name="value">Base64 to convert</param>
+    /// <returns>Base64 converted to String</returns>
+    [Obsolete("Please, use the Base64DecodeToString")]
+    public static string Base64Decode(this string value)
+    {
+        return value.Base64DecodeToString();
+    }
+    
+    /// <summary>
+    /// Convert a Base64 to Bytes
+    /// </summary>
+    /// <param name="value">Base64 to convert</param>
+    /// <returns>Base64 converted to Bytes</returns>
+    public static byte[] Base64DecodeToBytes(this string value) 
+    {
+        return Convert.FromBase64String(value ?? "");
+    }
+
+    /// <summary>
+    /// Convert a Base64 to String (Plain Text)
+    /// </summary>
+    /// <param name="value">Base64 to convert</param>
+    /// <returns>Base64 converted to String</returns>
+    public static string Base64DecodeToString(this string value)
+    {
+        var base64DecodeBytes = Convert.FromBase64String(value ?? "");
+        return Encoding.UTF8.GetString(base64DecodeBytes);
+    }
+    
+    /// <summary>
+    /// Convert a String (Plain Text) to Base64
+    /// </summary>
+    /// <param name="value">String to convert</param>
+    /// <returns>String converted to Base64</returns>
+    public static string Base64Encode(this string value)
+    {
+        var base64EncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
+        return Convert.ToBase64String(base64EncodeBytes);
+    }
+
+    /// <summary>
+    /// Checks if any of the entered items exist in the String
+    /// </summary>
+    /// <param name="value">String for analysis</param>
+    /// <param name="items">Items to find</param>
+    /// <returns>If at least one of the items is found, it will return True</returns>
+    public static bool Contains(this string value, params string[] items)
+    {
+        for (var i = 0; i < items.Length; i++)
+            if (value.Contains(items[i]))
                 return true;
 
-            var charToCompare = value[0];
+        return false;
+    }
 
-            for (int i = 0; i < value.Length; i++)
-                if (value[i] != charToCompare)
-                    return false;
-                else
-                    charToCompare = value[i];
+    /// <summary>
+    /// Checks if there is more than one word in the String
+    /// </summary>
+    /// <param name="value">String for analysis</param>
+    /// <returns>If more than one exists, True is returned.</returns>
+    public static bool HasMoreThanOneWord(this string value)
+    {
+        return value.Split().Length > 1;
+    }
 
-            return true;
-        }
+    /// <summary>
+    /// Convert a Hexadecimal to String (Plain Text)
+    /// </summary>
+    /// <param name="value">Hexadecimal to convert</param>
+    /// <returns>Hexadecimal converted to String</returns>
+    public static string HexadecimalDecode(this string value)
+    {
+        var bytes = new byte[value.Length / 2];
 
-        /// <summary>
-        /// Convert a Base64 to String (Plain Text)
-        /// </summary>
-        /// <param name="value">Base64 to convert</param>
-        /// <returns>Base64 converted to String</returns>
-        public static string Base64Decode(this string value)
-        {
-            var base64DecodeBytes = Convert.FromBase64String(value ?? "");
-            return Encoding.UTF8.GetString(base64DecodeBytes);
-        }
+        for (var i = 0; i < bytes.Length; i++)
+            bytes[i] = Convert.ToByte(value.Substring(i * 2, 2), 16);
 
-        /// <summary>
-        /// Convert a String (Plain Text) to Base64
-        /// </summary>
-        /// <param name="value">String to convert</param>
-        /// <returns>String converted to Base64</returns>
-        public static string Base64Encode(this string value)
-        {
-            var base64EncodeBytes = Encoding.UTF8.GetBytes(value ?? "");
-            return Convert.ToBase64String(base64EncodeBytes);
-        }
+        return Encoding.UTF8.GetString(bytes);
+    }
 
-        /// <summary>
-        /// Checks if any of the entered items exist in the String
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <param name="items">Items to find</param>
-        /// <returns>If at least one of the items is found, it will return True</returns>
-        public static bool Contains(this string value, params string[] items)
-        {
-            for (var i = 0; i < items.Length; i++)
-                if (value.Contains(items[i]))
-                    return true;
+    /// <summary>
+    /// Convert a String (Plain Text) to Hexadecimal
+    /// </summary>
+    /// <param name="value">String to convert</param>
+    /// <returns>String converted to Hexadecimal</returns>
+    public static string HexadecimalEncode(this string value)
+    {
+        return string.Join("", value.Select(c => ((int) c).ToString("x2")));
+    }
 
-            return false;
-        }
+    /// <summary>
+    /// Compares the string length with the given value. Checks if the length is equal.
+    /// </summary>
+    /// <param name="value">String to compare</param>
+    /// <param name="lengthCompare">Length to compare</param>
+    /// <returns>Returns true if the length is equal</returns>
+    public static bool LengthEqualTo(this string value, int lengthCompare)
+        => value.Length == lengthCompare;
 
-        /// <summary>
-        /// Checks if there is more than one word in the String
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <returns>If more than one exists, True is returned.</returns>
-        public static bool HasMoreThanOneWord(this string value)
-        {
-            return value.Split().Length > 1;
-        }
+    /// <summary>
+    /// Compares the string length to the given value. Checks if the length is different.
+    /// </summary>
+    /// <param name="value">String to compare</param>
+    /// <param name="lengthCompare">Length to compare</param>
+    /// <returns>Returns true if the length is not equal</returns>
+    public static bool LengthNotEqualTo(this string value, int lengthCompare)
+        => value.Length != lengthCompare;
 
-        /// <summary>
-        /// Convert a Hexadecimal to String (Plain Text)
-        /// </summary>
-        /// <param name="value">Hexadecimal to convert</param>
-        /// <returns>Hexadecimal converted to String</returns>
-        public static string HexadecimalDecode(this string value)
-        {
-            var bytes = new byte[value.Length / 2];
+    /// <summary>
+    /// Checks if the String is null, empty or contains white space
+    /// </summary>
+    /// <param name="value">String for analysis</param>
+    /// <returns>If the String is null and/or empty and/or contains white space, it will return True</returns>
+    public static bool IsNullOrEmptyOrWhiteSpace(this string value)
+    {
+        return string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
+    }
 
-            for (var i = 0; i < bytes.Length; i++)
-                bytes[i] = Convert.ToByte(value.Substring(i * 2, 2), 16);
+    /// <summary>
+    /// Removes all non-number characters
+    /// </summary>
+    /// <param name="value">String for analysis</param>
+    /// <returns>Returns a String with numbers only</returns>
+    public static string OnlyNumbers(this string value)
+    {
+        var charsNumbers = new[] {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        var sb = new StringBuilder();
 
-            return Encoding.UTF8.GetString(bytes);
-        }
+        for (var i = 0; i < value.Length; i++)
+            if (charsNumbers.Contains(value[i]))
+                sb.Append(value[i]);
 
-        /// <summary>
-        /// Convert a String (Plain Text) to Hexadecimal
-        /// </summary>
-        /// <param name="value">String to convert</param>
-        /// <returns>String converted to Hexadecimal</returns>
-        public static string HexadecimalEncode(this string value)
-        {
-            return string.Join("", value.Select(c => ((int)c).ToString("x2")));
-        }
+        return sb.ToString();
+    }
 
-        /// <summary>
-        /// Checks if the String is null, empty or contains white space
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <returns>If the String is null and/or empty and/or contains white space, it will return True</returns>
-        public static bool IsNullOrEmptyOrWhiteSpace(this string value)
-        {
-            return string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
-        }
+    /// <summary>
+    /// Remove the entered text from the String
+    /// </summary>
+    /// <param name="value">String for analysis</param>
+    /// <param name="partToRemove">Text that will be from the String</param>
+    /// <returns>Returns the string without the text entered</returns>
+    public static string Remove(this string value, string partToRemove)
+    {
+        return value.Replace(partToRemove, null);
+    }
 
-        /// <summary>
-        /// Removes all non-number characters
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <returns>Returns a String with numbers only</returns>
-        public static string OnlyNumbers(this string value)
-        {
-            var charsNumbers = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            var sb = new StringBuilder();
+    #region Converters
 
-            for (int i = 0; i < value.Length; i++)
-                if (charsNumbers.Contains(value[i]))
-                    sb.Append(value[i]);
-
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Remove the entered text from the String
-        /// </summary>
-        /// <param name="value">String for analysis</param>
-        /// <param name="partToRemove">Text that will be from the String</param>
-        /// <returns>Returns the string without the text entered</returns>
-        public static string Remove(this string value, string partToRemove)
-        {
-            return value.Replace(partToRemove, null);
-        }
-
-        #region Converters
-
-        /// <summary>
-        /// Converts the String to a DateTime. If it is not possible to convert an exception will be thrown
-        /// </summary>
-        /// <param name="value">String to be converted</param>
-        /// <param name="format">Date and time format as is in String</param>
-        /// <returns>A DateTime will be returned or an exception will be thrown</returns>
-        public static DateTime ToDateTime(this string value, string format = "yyyy-mm-dd")
-            => DateTime.TryParseExact(value, format, _cultureInfo, _dateTimeStyle, out DateTime result)
+    /// <summary>
+    /// Converts the String to a DateTime. If it is not possible to convert an exception will be thrown
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <param name="format">Date and time format as is in String</param>
+    /// <returns>A DateTime will be returned or an exception will be thrown</returns>
+    public static DateTime ToDateTime(this string value, string format = "yyyy-mm-dd")
+        => DateTime.TryParseExact(value, format, CultureInfo, DateTimeStyle, out var result)
             ? result
             : throw new InvalidCastException($"Unable to convert {value} value to date and time in {format} format");
 
-        /// <summary>
-        /// Converts the String to a Nullable DateTime. If it cannot convert, a null Nullable DateTime is returned
-        /// </summary>
-        /// <param name="value">String to be converted</param>
-        /// <param name="format">Date and time format as is in String</param>
-        /// <returns>A Nullable DateTime will be returned</returns>
-        public static DateTime? ToNullableDateTime(this string value, string format = "yyyy-mm-dd")
-            => DateTime.TryParseExact(value, format, _cultureInfo, _dateTimeStyle, out DateTime result)
+    /// <summary>
+    /// Converts the String to a Nullable DateTime. If it cannot convert, a null Nullable DateTime is returned
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <param name="format">Date and time format as is in String</param>
+    /// <returns>A Nullable DateTime will be returned</returns>
+    public static DateTime? ToNullableDateTime(this string value, string format = "yyyy-mm-dd")
+        => DateTime.TryParseExact(value, format, CultureInfo, DateTimeStyle, out var result)
             ? result
             : null;
 
-        /// <summary>
-        /// Converts the String to an Integer. If unable to convert an exception will be thrown
-        /// </summary>
-        /// <param name="value">String to be converted</param>
-        /// <returns>An Integer will be returned or an exception will be thrown</returns>
-        public static int ToInt(this string value)
-            => int.TryParse(value, out int result)
+    /// <summary>
+    /// Converts the String to an Integer. If unable to convert an exception will be thrown
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <returns>An Integer will be returned or an exception will be thrown</returns>
+    public static int ToInt(this string value)
+        => int.TryParse(value, out var result)
             ? result
             : throw new InvalidCastException($"Unable to convert the {value} value to an integer");
 
-        /// <summary>
-        /// Converts the String to a Nullable Integer. If unable to convert, a null Nullable Integer is returned
-        /// </summary>
-        /// <param name="value">String to be converted</param> 
-        /// <returns>A Nullable Integer will be returned</returns>
-        public static int? ToNullableInt(this string value)
-            => int.TryParse(value, out int result)
+    /// <summary>
+    /// Converts the String to a Nullable Integer. If unable to convert, a null Nullable Integer is returned
+    /// </summary>
+    /// <param name="value">String to be converted</param> 
+    /// <returns>A Nullable Integer will be returned</returns>
+    public static int? ToNullableInt(this string value)
+        => int.TryParse(value, out var result)
             ? result
             : null;
 
-        /// <summary>
-        /// Converts the String to a Long. If unable to convert an exception will be thrown
-        /// </summary>
-        /// <param name="value">String to be converted</param>
-        /// <returns>A Long will be returned or an exception will be thrown</returns>
-        public static long ToLong(this string value)
-            => long.TryParse(value, out long result)
+    /// <summary>
+    /// Converts the String to a Long. If unable to convert an exception will be thrown
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <returns>A Long will be returned or an exception will be thrown</returns>
+    public static long ToLong(this string value)
+        => long.TryParse(value, out var result)
             ? result
             : throw new InvalidCastException($"Unable to convert the {value} value to a long");
 
-        /// <summary>
-        /// Converts the String to a Nullable Long. If unable to convert, a null Nullable Long is returned
-        /// </summary>
-        /// <param name="value">String to be converted</param>
-        /// <returns>A Nullable Long will be returned</returns>
-        public static long? ToNullableLong(this string value)
-            => long.TryParse(value, out long result)
+    /// <summary>
+    /// Converts the String to a Nullable Long. If unable to convert, a null Nullable Long is returned
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <returns>A Nullable Long will be returned</returns>
+    public static long? ToNullableLong(this string value)
+        => long.TryParse(value, out var result)
             ? result
             : null;
 
-        /// <summary>
-        /// Converts the String to a Short. If unable to convert an exception will be thrown
-        /// </summary>
-        /// <param name="value">String to be converted</param>
-        /// <returns>A Short will be returned or an exception will be thrown</returns>
-        public static short ToShort(this string value)
-            => short.TryParse(value, out short result)
+    /// <summary>
+    /// Converts the String to a Short. If unable to convert an exception will be thrown
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <returns>A Short will be returned or an exception will be thrown</returns>
+    public static short ToShort(this string value)
+        => short.TryParse(value, out var result)
             ? result
             : throw new InvalidCastException($"Unable to convert the {value} value to a short");
 
-        /// <summary>
-        /// Converts the String to a Nullable Long. If unable to convert, a null Nullable Long is returned
-        /// </summary>
-        /// <param name="value">String to be converted</param>
-        /// <returns>A Nullable Short will be returned</returns>
-        public static short? ToNullableShort(this string value)
-            => short.TryParse(value, out short result)
+    /// <summary>
+    /// Converts the String to a Nullable Long. If unable to convert, a null Nullable Long is returned
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <returns>A Nullable Short will be returned</returns>
+    public static short? ToNullableShort(this string value)
+        => short.TryParse(value, out var result)
             ? result
             : null;
 
-        #endregion
-
-    }
+    #endregion
 }

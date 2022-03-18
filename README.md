@@ -43,6 +43,13 @@
     > dotnet add package PowerXtensions.DotNet 
 ```
 
+## [Byte Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/Byte-Extensions)
+- Base64Encode (Array)
+- Base64Encode (IEnumerable)
+
+## [Char Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/Char-Extensions)
+- ToInt
+
 ## [DateTime Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/DateTime-Extensions)
 - DifferenceInDaysBetweenDates
 - IsWeekend
@@ -55,7 +62,9 @@
 
 ## [String Extensions](https://github.com/reginaldovillela/PowerXtensions.DotNet/wiki/String-Extensions)
 - AllCharactersSame
-- Base64Decode
+- Base64Decode (Deprecated - Use Base64DecodeToString)
+- Base64DecodeToBytes
+- Base64DecodeToString
 - Base64Encode
 - Contains
 - HasMoreThanOneWord

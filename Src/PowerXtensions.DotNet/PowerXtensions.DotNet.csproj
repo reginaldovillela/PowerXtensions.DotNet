@@ -20,17 +20,17 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>[EN] Include more extensions: DateTime Extensions.
-[PT-BR] Incluído mais extensões: DateTime Extensions.</PackageReleaseNotes>
+    <PackageReleaseNotes>[EN] Include more extensions: Char, Byte and String Extensions.
+[PT-BR] Incluído mais extensões: Char, Byte e String Extensions.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Product>PowerXtensions.DotNet</Product>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageTags>powerextension powerextensions powerxtension powerxtensions power extension extensions date int long short string base64 hexadecimal converters c# .net dotnet</PackageTags>
+    <PackageTags>powerextension powerextensions powerxtension powerxtensions power extension extensions byte bytes char date int long short string base64 hexadecimal converters c# .net dotnet</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/reginaldovillela/PowerXtensions.DotNet</RepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Title>PowerXtensions.DotNet</Title>
-    <Version>2.0.0</Version>
+    <Version>3.0.0-beta-001</Version>
   </PropertyGroup>
 
   <ItemGroup>
